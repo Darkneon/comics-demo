@@ -1,7 +1,7 @@
 import React from "react";
 
 import PropTypes from "prop-types";
-import List from "../core/List/List";
+import List from "../../../core/components/List/List";
 import ComicShort from "../ComicShort/ComicShort";
 
 
