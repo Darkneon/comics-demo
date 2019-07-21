@@ -1,9 +1,9 @@
 import React from "react";
 import 'jest';
 
-import {cleanup, render} from '@testing-library/react';
-import ListComics from "./ListComics";
 import {MemoryRouter} from 'react-router-dom';
+import {cleanup, render} from '@testing-library/react';
+import ListFavorites from "./ListFavorites";
 
 afterEach(cleanup);
 
@@ -18,18 +18,21 @@ const comics = [{
     price: 2,
 }];
 
-const listTestId = 'list-comics';
+const listTestId = 'list-favorites';
+const headerTestId = 'header-favorites';
 
 
-describe('<ListComics comics={} />', () => {
+describe('<ListFavorites comics={} />', () => {
     describe('comics', () => {
         it('should render a list of comics', () => {
-            const {getByTestId} = render(
+            const header = 'Favorites:';
+            const {getByTestId,debug} = render(
                 <MemoryRouter>
-                    <ListComics comics={comics} />
+                    <ListFavorites comics={comics} />
                 </MemoryRouter>
             );
 
+            expect(getByTestId(headerTestId).textContent).toBe(header);
             expect(getByTestId(listTestId).childNodes).toHaveLength(comics.length);
         });
     });

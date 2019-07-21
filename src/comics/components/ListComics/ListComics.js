@@ -3,10 +3,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import List from "../../../core/components/List/List";
 import ComicShort from "../ComicShort/ComicShort";
+import {Link} from "react-router-dom";
 
 
 function comicRenderer(item) {
-    return (<ComicShort {...item} />)
+    return ( <Link to={`/comic/${item.key}`}> <ComicShort {...item} /></Link>)
 }
 
 const ListComics = ({comics}) => {

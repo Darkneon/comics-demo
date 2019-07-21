@@ -9,6 +9,7 @@ import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import {ComicsService} from "../comics/service";
 import {reducerComics} from "../comics/ducks";
+import {MemoryRouter} from 'react-router-dom';
 
 const middleware = [thunk];
 const store = createStore(reducerComics,  applyMiddleware(...middleware));
@@ -28,7 +29,12 @@ describe('<Home />', () => {
 
         it('should render a list of comics fetched from server', async () => {
             const Home = withConnectPropsHome(mapDispatchToProps);
-            const {getByTestId, debug} = render(<Provider store={store}><Home /></Provider>);
+            const {getByTestId, debug} = render(<Provider store={store}>
+                    <MemoryRouter>
+                        <Home />
+                    </MemoryRouter>,
+                </Provider>
+            );
             await waitForElement(() => getByTestId('list-comics'));
             expect(fakeClient.get).toHaveBeenCalled();
         });
