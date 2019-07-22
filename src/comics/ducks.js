@@ -12,7 +12,7 @@ export const reducerComics = (state = initialState, action) => {
         case LOAD_COMICS_SUCCESS: return {
             ...state,
             loaded: true,
-            comics: action.comics
+            comics: [].concat(action.comics)
         };
 
         case LOAD_COMICS_ERROR:   return {
@@ -21,7 +21,8 @@ export const reducerComics = (state = initialState, action) => {
             error: action.error
         };
 
-        default:                  return state;
+        default:
+            return state;
     }
 };
 
