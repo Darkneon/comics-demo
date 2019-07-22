@@ -1,0 +1,5 @@
+.prev-next-container {
+    width: 100%;
+    display: flex;
+    alignItems: center;
+}
