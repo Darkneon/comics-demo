@@ -1,6 +1,7 @@
 import React from "react";
 
 import PropTypes from "prop-types";
+import './List.css';
 
 const defaultRenderer = (item) => {
     return <>{item.toString()}</>
@@ -9,7 +10,7 @@ const defaultRenderer = (item) => {
 const List = ({items=[], customRenderer, ...props}) => {
     const renderer = customRenderer || defaultRenderer;
     return (
-        <ul data-testid='list' {...props}>
+        <ul data-testid='list' {...props} className="core-list">
             { renderItems(items, renderer) }
         </ul>
     );

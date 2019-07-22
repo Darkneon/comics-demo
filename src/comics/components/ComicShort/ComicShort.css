@@ -1,0 +1,16 @@
+
+.comic-short {
+    margin-bottom: 5px;
+    width: 100%;
+    display: flex;
+}
+
+.comic-short-humbnail {
+    flex-shrink: 0;
+}
+
+.comic-short-content {
+    padding: 20px;
+    width: 100%;
+    flex-shrink: 1;
+}

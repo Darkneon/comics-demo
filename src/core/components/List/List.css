@@ -1,0 +1,11 @@
+.core-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+ul.core-list {
+    list-style: none;
+}
