@@ -5,19 +5,33 @@ import List from "../../../core/components/List/List";
 import ComicShort from "../ComicShort/ComicShort";
 import {Link} from "react-router-dom";
 
-
-function comicRenderer(item) {
-    return ( <Link to={`/comic/${item.key}`}> <ComicShort {...item} /></Link>)
+function isFavorite(comic={}, favorites={}) {
+    return !!favorites[comic.key];
 }
 
-const ListComics = ({comics}) => {
+function comicRenderer(props) {
+    return (item) => {
+        return (
+            <Link to={`/comic/${item.key}`}>
+                <ComicShort comic={item}
+                            onRemoveFavorite={props.onRemoveFavorite}
+                            onAddToFavorite={props.onAddToFavorite}
+                            isFavorited={isFavorite(item, props.favorites)} />
+            </Link>
+        )
+    }
+
+}
+
+const ListComics = ({comics, ...props}) => {
     return (
-        <List items={comics} customRenderer={comicRenderer} data-testid={'list-comics'} />
+        <List items={comics} customRenderer={comicRenderer(props)} data-testid={'list-comics'} />
     );
 };
 
 ListComics.propTypes = {
     comics: PropTypes.array.isRequired,
+    favorites: PropTypes.object.isRequired,
 };
 
 export default ListComics;
