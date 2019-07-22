@@ -6,18 +6,21 @@ const defaultRenderer = (item) => {
     return <>{item.toString()}</>
 };
 
-const List = ({items, customRenderer, ...props}) => {
+const List = ({items=[], customRenderer, ...props}) => {
     const renderer = customRenderer || defaultRenderer;
     return (
         <ul data-testid='list' {...props}>
-            {
-                items.map(item => (
-                    <li key={item.key}>{renderer(item)}</li>
-                ))
-            }
+            { renderItems(items, renderer) }
         </ul>
     );
 };
+
+function renderItems(items, renderer) {
+    const all = Array.isArray(items) ? items: Object.values(items);
+    return all.map(item => (
+        <li key={item.key}>{renderer(item)}</li>
+    ))
+}
 
 List.propTypes = {
     items: PropTypes.array.isRequired,
