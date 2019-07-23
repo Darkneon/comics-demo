@@ -1,0 +1,8 @@
+.dd-wrapper .dd-list {
+    overflow-y: auto;
+}
+
+.sort-field {
+    display: flex;
+}
+
