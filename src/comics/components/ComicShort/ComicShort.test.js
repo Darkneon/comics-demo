@@ -10,7 +10,7 @@ describe('<ComicShort comic={} />', () => {
         const comic = {
             title: 'a title',
             price: 29,
-            published: '2000-1-1T00:00:00',
+            published: '-',
             cover: '/url'
         };
 

@@ -7,6 +7,7 @@ import Star from "../../../core/components/Star/Star";
 import './ComicShort.css';
 import '../../../App.css';
 import {Link} from "react-router-dom";
+import publishedDate from "../../publishedDate/publishedDate";
 
 const ComicShort = ({comic, linkTo, isFavorited, toggleFavorite}) => {
     const {title, price, published, cover='https://via.placeholder.com/150'} = comic;
@@ -16,18 +17,21 @@ const ComicShort = ({comic, linkTo, isFavorited, toggleFavorite}) => {
         <div className="comic-short">
                 <div className="comic-short-thumbnail">
                     <Link to={linkTo}>
-                        <img data-testid='cover' src={cover} />
+                        <img data-testid='cover' src={cover} alt='cover' />
                     </Link>
                 </div>
 
 
                 <div className="comic-short-content">
+                    <div className="comic-short-favorite-container">
+                        <Star onClick={withComicToggleFavorite} checked={isFavorited} className='u-hoverable' />
+                    </div>
                     <Link to={linkTo}>
-                        <div data-testid='title'>{title}</div>
-                        <div data-testid='price'>{price} $</div>
-                        <div data-testid='published'>{published}</div>
+                        <div className='comic-short-content-title t-title' data-testid='title'>{title}</div>
+                        <div className='comic-short-content-price t-tag' data-testid='price'>{price} $</div>
+                        <div className='t-tag' data-testid='published'>{publishedDate(published, '-')}</div>
                     </Link>
-                    <Star onClick={withComicToggleFavorite} checked={isFavorited} className='u-hoverable' />
+
                 </div>
         </div>
     );

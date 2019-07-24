@@ -1,7 +1,6 @@
 
 .comic-long {
     margin-bottom: 5px;
-    width: 80%;
     display: flex;
 }
 
@@ -36,4 +35,9 @@
 .comic-long-prev-next {
     width: 100%;
     font-size: 40px;
+}
+
+.comic-long-favorite-container {
+    float: right;
+    font-size: 2rem;
 }

@@ -1,22 +1,22 @@
-import {loadActiveComicSuccess, loadComicsError, loadComicsSuccess} from "./actions";
 import axios from 'axios';
 import * as _ from 'lodash';
 import {sortBy} from "./sorter/sorter";
-import { setupCache } from 'axios-cache-adapter'
+import {setupCache} from 'axios-cache-adapter'
 import {endPoint} from "../api";
 
-// Create `axios-cache-adapter` instance
 const cache = setupCache({
     maxAge: 5 * 60 * 1000
 });
 
-const instance = axios.create({
+export const instance = axios.create({
     adapter: cache.adapter
 });
 
-function transform(response) {
+
+export function transform(response) {
     const jsonResponse = typeof response === 'string' ? JSON.parse(response) : response;
-    const { results } = jsonResponse.data;
+    const { total, results } = jsonResponse.data;
+
 
     const comics = results.map((comic, i) => {
         const {
@@ -46,7 +46,7 @@ function transform(response) {
         }
     });
 
-    return comics;
+    return {comics, total};
 }
 
 export class ComicsService {
@@ -54,43 +54,43 @@ export class ComicsService {
         this.httpClient = httpClient;
     }
 
-    loadComics(sort={}) {
+    async loadComics(sort={}, maxLimit) {
         let sortString = sortBy([sort]);
+
+
         let orderBy = '';
         if (sortString) {
             orderBy = `&orderBy=${sortString}`;
         }
 
-        const that = this;
-        return async function(dispatch) {
-            try {
-                let response = await that.httpClient.get(API.comics + orderBy, {
-                    cache: { maxAge: 5 * 60 * 1000, exclude: {  query: false } },
-                    transformResponse: transform
-                });
-                return dispatch(loadComicsSuccess(response.data));
-            } catch (e) {
-                return dispatch(loadComicsError('error'));
-            }
-        };
+        const limit = `&limit=${maxLimit}`;
+
+        try {
+            let response = await this.httpClient.get(API.comics + orderBy + limit, {
+                cache: { maxAge: 5 * 60 * 1000, exclude: {  query: false } },
+                transformResponse: transform
+            });
+
+            return  response.data;
+        } catch (e) {
+            return new Error(e);
+        }
     }
 
-    loadComic(id) {
+    async loadComic(id) {
         const comicId = `&id=${id}`;
 
-        const that = this;
-        return async function(dispatch) {
-            try {
-                let response = await that.httpClient.get(API.comics + comicId, {
-                    cache: { maxAge: 5 * 60 * 1000, exclude: {  query: false } },
-                    transformResponse: transform
-                });
-                return dispatch(loadActiveComicSuccess(response.data[0]));
-            } catch (e) {
-               return dispatch(loadComicsError('error'));
-            }
-        };
-    }
+        try {
+            let response = await this.httpClient.get(API.comics + comicId, {
+                cache: { maxAge: 5 * 60 * 1000, exclude: {  query: false } },
+                transformResponse: transform
+            });
+            return response.data;
+        } catch (e) {
+           return new Error(e);
+        }
+    };
+
 }
 
 

@@ -3,7 +3,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import List from "../../../core/components/List/List";
 import ComicShort from "../ComicShort/ComicShort";
-import {Link} from "react-router-dom";
 
 function isFavorite(comic={}, favorites={}) {
     return !!favorites[comic.key];
