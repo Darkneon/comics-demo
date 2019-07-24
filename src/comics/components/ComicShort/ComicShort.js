@@ -1,25 +1,33 @@
 import React from "react";
 
+
 import PropTypes from "prop-types";
 import Star from "../../../core/components/Star/Star";
 
 import './ComicShort.css';
+import '../../../App.css';
+import {Link} from "react-router-dom";
 
-const ComicShort = ({comic, isFavorited, onRemoveFavorite, onAddToFavorite}) => {
+const ComicShort = ({comic, linkTo, isFavorited, toggleFavorite}) => {
     const {title, price, published, cover='https://via.placeholder.com/150'} = comic;
-    const handleClick = () => { !isFavorited ? onAddToFavorite(comic) : onRemoveFavorite(comic.key) };
+    const withComicToggleFavorite = () => toggleFavorite(comic);
 
     return (
         <div className="comic-short">
                 <div className="comic-short-thumbnail">
-                    <img data-testid='cover' src={cover} />
+                    <Link to={linkTo}>
+                        <img data-testid='cover' src={cover} />
+                    </Link>
                 </div>
 
+
                 <div className="comic-short-content">
-                    <div data-testid='title'>{title}</div>
-                    <div data-testid='price'>{price} $</div>
-                    <div data-testid='published'>{published}</div>
-                    <Star onClick={handleClick} checked={isFavorited}>Add to </Star>
+                    <Link to={linkTo}>
+                        <div data-testid='title'>{title}</div>
+                        <div data-testid='price'>{price} $</div>
+                        <div data-testid='published'>{published}</div>
+                    </Link>
+                    <Star onClick={withComicToggleFavorite} checked={isFavorited} className='u-hoverable' />
                 </div>
         </div>
     );
