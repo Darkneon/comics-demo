@@ -1,39 +1,37 @@
 import React, {useState} from "react";
 import * as _ from 'lodash';
 
-import PropTypes from "prop-types";
-
 
 import {Dropdown} from 'reactjs-dropdown-component'
 
 import './SortField.css';
 
-const ordersList = [
-    {
-        id:
-            0, key:
-            'order', title:
-            'Asc',
+const ordersList = [{
+    id: 0,
+    key: 'order',
+    title: 'Asc',
+}, {
+    id: 1,
+    key: 'order',
+    title: 'Desc'
+},];
 
-    },
-
-    {
-        id:
-            1, key:
-            'order', title:
-            'Desc'
-    },
-
-];
-
-const SortField = ({title, onChange, optionsList = {}}) => {
+const SortField = ({selectedOption, selectedSort, onChange, optionsList = {}}) => {
     const [options, setOptions] = useState(optionsList);
     const [orders, setOrders] = useState(ordersList);
     const [optionSelected, setOptionSelected] = useState({});
     const [orderSelected, setOrderSelected] = useState({});
 
+    if (_.isEmpty(optionSelected)) {
+        const option = optionsList.find(x => x.id === selectedOption);
+        const result = resetThenSet(option.id, option.key, optionsList);
+        setOptionSelected(result.selected);
+        setOptions(result.remaining);
+    }
+
     if (_.isEmpty(orderSelected)) {
-        const result = resetThenSet(ordersList[0].id, ordersList[0].key, ordersList);
+        const order = ordersList.find(x => x.id === selectedSort);
+        const result = resetThenSet(order.id, order.key, ordersList);
         setOrderSelected(result.selected);
         setOrders(result.remaining);
     }
@@ -53,14 +51,14 @@ const SortField = ({title, onChange, optionsList = {}}) => {
     };
 
     return (
-        <div className="sort-field">
+        <div className="sort-field t-select-text">
             <Dropdown
-                title={title}
+                title={optionSelected.title}
                 list={options}
                 resetThenSet={handleFieldChange}
             />
             <Dropdown
-                title='Asc'
+                title={orderSelected.title}
                 list={orders}
                 resetThenSet={handleOrderChange}
             />

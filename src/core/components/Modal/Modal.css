@@ -17,3 +17,19 @@
     border: 1px solid #888;
     width: 80%;
 }
+
+.modal-close-button {
+    color: #676d87;
+    font-size: 32px;
+    line-height: 1;
+    padding: 6px 10px 7px;
+    position: absolute;
+    right: 15px;
+    text-decoration: none;
+    top: 15px;
+    background-color: #fefefe;
+}
+
+.modal-close-button:hover {
+    color: #646464;
+}

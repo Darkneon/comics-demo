@@ -3,10 +3,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const fontSize = '36px';
+const fontWeight = 100;
 
-
-const StarGlyth = ({onClick, color='black', className, children}) => (
-    <div onClick={onClick} style={{fontSize, color}} className={className}>
+const StarGlyth = ({onClick, color='#9E9E9E', className, children}) => (
+    <div onClick={onClick} style={{fontSize, color, fontWeight}} className={className}>
         {children}
     </div>
 );

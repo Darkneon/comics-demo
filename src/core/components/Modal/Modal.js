@@ -14,7 +14,7 @@ export const Modal = ({ handleClose, children }) => {
 
     return (
         <div className="modal" onClick={handleCloseIfOutside} ref={node => domSelfRef = node}>
-            <button onClick={handleClose}>x</button>
+            <button onClick={handleClose} className='modal-close-button'>&#9747;</button>
             <div className="modal-content">
                 {children}
             </div>

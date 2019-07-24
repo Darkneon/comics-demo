@@ -1,8 +1,19 @@
+.dd-wrapper:first-child {
+    padding-right: 5px;
+}
+
 .dd-wrapper .dd-list {
     overflow-y: auto;
 }
 
+.dd-wrapper .dd-list-item:hover {
+    color: #fff;
+    background-color: #ceddf9;
+}
+
 .sort-field {
     display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
 }
 

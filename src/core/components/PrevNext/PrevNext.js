@@ -3,7 +3,7 @@ import React from "react";
 import './PrevNext.css';
 
 const Arrow = ({onClick, children}) => (
-    <div onClick={onClick} className='u-hoverable'>
+    <div onClick={onClick} className='arrow u-hoverable'>
         {children}
     </div>
 );
