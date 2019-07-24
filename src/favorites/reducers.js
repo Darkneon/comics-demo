@@ -6,8 +6,6 @@ const initialState = {
 };
 
 export const reducerFavorites = (state = initialState, action) => {
-    console.debug('action triggered: ', action);
-
     const { type } = action;
     switch(type) {
         case TOGGLE_FAVORITE: {

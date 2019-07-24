@@ -25,14 +25,12 @@ const headerTestId = 'header-favorites';
 describe('<ListFavorites comics={} />', () => {
     describe('comics', () => {
         it('should render a list of comics', () => {
-            const header = 'Favorites:';
             const {getByTestId} = render(
                 <MemoryRouter>
                     <ListFavorites comics={comics} />
                 </MemoryRouter>
             );
 
-            expect(getByTestId(headerTestId).textContent).toBe(header);
             expect(getByTestId(listTestId).childNodes).toHaveLength(comics.length);
         });
     });

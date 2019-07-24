@@ -1,15 +1,16 @@
 .favorite-bar {
-    padding: 5px;
+    margin: 5px 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .favorite-bar-toggle {
-    border: 1px solid forestgreen;
-    color: forestgreen;
     padding: 10px;
     width: 100px;
     text-align: center;
     font-size: 1.5rem;
     border-radius: 3px;
+    background-color: transparent;
+    border: 1px solid #dfdfdf;
+    color: #7d8caf;
 }

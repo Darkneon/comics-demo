@@ -7,7 +7,7 @@ function FavoritesBar({linkTo}) {
     return (
         <div className='favorite-bar'>
             <Link to={linkTo}>
-                <div className='favorite-bar-toggle u-hoverable' >Favorites</div>
+                <div className='favorite-bar-toggle u-hoverable'>Favorites</div>
             </Link>
         </div>
     )
