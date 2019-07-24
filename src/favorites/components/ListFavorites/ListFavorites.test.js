@@ -26,7 +26,7 @@ describe('<ListFavorites comics={} />', () => {
     describe('comics', () => {
         it('should render a list of comics', () => {
             const header = 'Favorites:';
-            const {getByTestId,debug} = render(
+            const {getByTestId} = render(
                 <MemoryRouter>
                     <ListFavorites comics={comics} />
                 </MemoryRouter>
