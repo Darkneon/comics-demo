@@ -1,4 +1,4 @@
-import {loadComicsError, loadComicsSuccess} from "./ducks";
+import {loadActiveComicSuccess, loadComicsError, loadComicsSuccess} from "./actions";
 import axios from 'axios';
 import * as _ from 'lodash';
 import {sortBy} from "./sorter/sorter";
@@ -18,10 +18,9 @@ function transform(response) {
 
 
     const jsonResponse = typeof response === 'string' ? JSON.parse(response) : response;
-    const results = jsonResponse.data.results;
+    const { results } = jsonResponse.data;
 
-    const comics = results.map(comic => {
-
+    const comics = results.map((comic, i) => {
         const {
             id,
             title,
@@ -77,7 +76,26 @@ export class ComicsService {
             }
         };
     }
+
+    loadComic(id) {
+        const comicId = `&id=${id}`;
+
+        const that = this;
+        return async function(dispatch) {
+            try {
+                let response = await that.httpClient.get(API.comics + comicId, {
+                    cache: { maxAge: 5 * 60 * 1000, exclude: {  query: false } },
+                    transformResponse: transform
+                });
+                return dispatch(loadActiveComicSuccess(response.data[0]));
+            } catch (e) {
+               return dispatch(loadComicsError('error'));
+            }
+        };
+    }
 }
+
+
 
 export const API = {
     comics: endPoint
