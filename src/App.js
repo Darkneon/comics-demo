@@ -2,14 +2,12 @@ import React from 'react';
 import './App.css';
 import {withConnectHome} from "./pages/PageHome/PageHome";
 
-import {Link, Route, Router} from "react-router-dom"
+import {Route, Router} from "react-router-dom"
 import {withModalComicDetails} from "./pages/PageComicDetails/PageComicDetails";
 import {withModalFavorites} from "./pages/PageFavorites/PageFavorites";
-import {ComicsHttpClientFake} from "./tests/fakes/comicsHttpClient";
-import {ComicsService} from "./comics/service";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {closeModal, openModal} from "./comics/actions";
+import {closeModal, loadComic, openModal} from "./comics/actions";
 
 import history from './history'
 import FavoritesBar from "./favorites/components/FavoritesBar/FavoritesBar";
@@ -92,11 +90,8 @@ const mapStateToProps = state => ({
     activeComic: state.reducerComics.activeComic
 });
 
-const fake = new ComicsHttpClientFake();
-const service = new ComicsService();
-
 const mapDispatchToProps = dispatch => bindActionCreators({
-    loadComic: service.loadComic.bind(service),
+    loadComic: loadComic,
     openModal,
     closeModal
 }, dispatch);

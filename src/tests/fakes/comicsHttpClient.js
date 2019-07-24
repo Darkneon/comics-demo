@@ -9,6 +9,9 @@ export class ComicsHttpClientFake {
                     setTimeout(() => response({comics}), 1000);
                 })
             }
+            default: {
+                console.error('unexpected:', url);
+            }
         }
     }
 }
