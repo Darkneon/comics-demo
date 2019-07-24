@@ -29,33 +29,24 @@ export class PageComicDetails extends React.Component {
             return <div></div>;
         }
 
-
-        let i = comics.findIndex(x => x.id === activeComic.id);
-
-
-        let prevIndex = Math.max(-1, i-1);
-        if (prevIndex === -1) {
-            prevIndex = comicsPerPage - 1 || 0;
-        }
-
-        const nextIndex = i === -1 ?  0 : (i + 1) % comicsPerPage;
-
-
+        const {prevIndex, nextIndex} = calculateNextPrevIndices(comics, activeComic, comicsPerPage);
         const prev = comics[prevIndex].id;
         const next = comics[nextIndex].id;
-
 
         return (
             <div>
                 <ComicLong comic={activeComic}
+
                            onPrevClick={()=>{
                                changeInListIndex(prevIndex);
                                history.push('/comic/' + prev)
                            }}
+
                            onNextClick={()=>{
                                changeInListIndex(nextIndex);
                                history.push('/comic/' + next)
                            }}
+
                            isFavorited={!!favorites[activeComic.key]}
                            toggleFavorite={toggleFavorite} />
             </div>
@@ -65,6 +56,19 @@ export class PageComicDetails extends React.Component {
 
 }
 
+function calculateNextPrevIndices(comics, activeComic, comicsPerPage) {
+    let i = comics.findIndex(x => x.id === activeComic.id);
+
+
+    let prevIndex = Math.max(-1, i-1);
+    if (prevIndex === -1) {
+        prevIndex = comicsPerPage - 1 || 0;
+    }
+
+    const nextIndex = i === -1 ?  0 : (i + 1) % comicsPerPage;
+    return {prevIndex, nextIndex};
+
+}
 const mapStateToProps = state => ({
     inListIndex: state.reducerComics.inListIndex,
     activeComic: state.reducerComics.activeComic,
