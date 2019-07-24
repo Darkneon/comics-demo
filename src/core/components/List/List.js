@@ -17,7 +17,7 @@ const List = ({items=[], customRenderer, ...props}) => {
 };
 
 function renderItems(items, renderer) {
-    const all = Array.isArray(items) ? items: Object.values(items);
+    const all = Array.isArray(items) ? items.filter(Boolean): Object.values(items);
     return all.map(item => (
         <li key={item.key}>{renderer(item)}</li>
     ))
