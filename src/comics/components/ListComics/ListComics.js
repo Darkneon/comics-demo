@@ -12,12 +12,11 @@ function isFavorite(comic={}, favorites={}) {
 function comicRenderer(props) {
     return (item) => {
         return (
-            <Link to={`/comic/${item.key}`}>
                 <ComicShort comic={item}
-                            onRemoveFavorite={props.onRemoveFavorite}
-                            onAddToFavorite={props.onAddToFavorite}
+                            toggleFavorite={props.toggleFavorite}
+                            linkTo={`/comic/${item.id}`}
                             isFavorited={isFavorite(item, props.favorites)} />
-            </Link>
+
         )
     }
 
