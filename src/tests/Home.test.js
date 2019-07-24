@@ -4,7 +4,7 @@ import 'jest';
 import {cleanup, render, waitForElement} from '@testing-library/react';
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {ComicsHttpClientFake} from "./fakes/comicsHttpClient";
-import {withConnectHome} from "../pages/PageHome/PageHome";
+import {withConnectHome} from "../pages/PageHome";
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import {ComicsService} from "../comics/service";

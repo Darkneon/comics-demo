@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import {withConnectHome} from "./pages/PageHome/PageHome";
+import {withConnectHome} from "./pages/PageHome";
 
 import {Route, Router} from "react-router-dom"
-import {withModalComicDetails} from "./pages/PageComicDetails/PageComicDetails";
-import {withModalFavorites} from "./pages/PageFavorites/PageFavorites";
+import {withModalComicDetails} from "./pages/PageComicDetails";
+import {withModalFavorites} from "./pages/PageFavorites";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {closeModal, loadComic, openModal} from "./comics/actions";
@@ -15,15 +15,11 @@ import FavoritesBar from "./favorites/components/FavoritesBar/FavoritesBar";
 function App(props) {
   return (
       <Router history={history}>
-          <nav>
-              <FavoritesBar linkTo={'/favorites'} />
-          </nav>
+          <FavoritesBar linkTo={'/favorites'} />
 
           <Route path="/" component={RoutedHome(props)} />
           <Route path="/comic/:id" component={RoutedComicDetails(props)} />
           <Route path="/favorites" component={RoutedFavorites(props)} />
-
-
       </Router>
   );
 }

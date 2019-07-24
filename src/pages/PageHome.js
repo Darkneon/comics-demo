@@ -1,14 +1,14 @@
 import React from "react";
-import ListComics from "../../comics/components/ListComics/ListComics";
+import ListComics from "../comics/components/ListComics/ListComics";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {toggleFavorite} from "../../favorites/actions";
-import SortField from "../../core/components/SortField/SortField";
+import {toggleFavorite} from "../favorites/actions";
+import SortField from "../core/components/SortField/SortField";
 import * as _ from 'lodash';
 import {withRouter} from "react-router-dom";
-import Pagination from "../../core/components/Pagination/Pagination";
-import {changeActivePage, changeSorting, loadComics, loadComicsFrom} from "../../comics/actions";
-import Loading from "../../core/components/Loading/Loading";
+import Pagination from "../core/components/Pagination/Pagination";
+import {changeActivePage, changeSorting, loadComics, loadComicsFrom} from "../comics/actions";
+import Loading from "../core/components/Loading/Loading";
 
 const sortOptions = [
     {
