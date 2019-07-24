@@ -12,12 +12,13 @@ import {bindActionCreators} from "redux";
 import {closeModal, openModal} from "./comics/actions";
 
 import history from './history'
+import FavoritesBar from "./favorites/components/FavoritesBar/FavoritesBar";
 
 function App(props) {
   return (
       <Router history={history}>
           <nav>
-              <Link to='/favorites'><h1>Favorites</h1></Link>
+              <FavoritesBar linkTo={'/favorites'} />
           </nav>
 
           <Route path="/" component={RoutedHome(props)} />

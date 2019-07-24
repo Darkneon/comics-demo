@@ -1,0 +1,15 @@
+.favorite-bar {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.favorite-bar-toggle {
+    border: 1px solid forestgreen;
+    color: forestgreen;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    font-size: 1.5rem;
+    border-radius: 3px;
+}
