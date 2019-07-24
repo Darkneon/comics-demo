@@ -15,8 +15,6 @@ const instance = axios.create({
 });
 
 function transform(response) {
-
-
     const jsonResponse = typeof response === 'string' ? JSON.parse(response) : response;
     const { results } = jsonResponse.data;
 
