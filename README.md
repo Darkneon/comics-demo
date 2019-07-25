@@ -2,7 +2,7 @@
 
 ```
 yarn install
-yarn run
+yarn start
 ```
 
 Tested on:
