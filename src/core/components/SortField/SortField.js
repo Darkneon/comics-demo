@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 import {Dropdown} from 'reactjs-dropdown-component'
 
-import './SortField.css';
+import './SortField.scss';
 
 const ordersList = [{
     id: 0,

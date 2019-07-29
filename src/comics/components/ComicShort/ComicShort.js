@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import Star from "../../../core/components/Star/Star";
 
 import './ComicShort.css';
-import '../../../App.css';
 import {Link} from "react-router-dom";
 import publishedDate from "../../publishedDate/publishedDate";
 

@@ -1,3 +1,5 @@
+@import "../../../themes/default";
+
 .pagination-container {
     display: flex;
     justify-content: center;
@@ -19,23 +21,22 @@
     position: relative;
     float: left;
     padding: 6px 12px;
-    line-height: 1.42857143;
+    line-height: 1.4;
     text-decoration: none;
-    color: #7d8caf;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    color: get-color('primary', 800);
+    background-color: get-color('neutral', 100);
+    border: 1px solid get-color('neutral', 200);
     margin-left: -1px;
 }
 
 .pagination > .active > a {
-    color: #fff;
-    background-color: #cbcbcb;
+    background-color: get-color('neutral', 200);
 }
 
 .pagination > .disabled > a {
-    color: #777;
-    background-color: #fff;
-    border-color: #ddd;
+    color: get-color('primary', 900);
+    background-color: get-color('neutral', 100);
+    border-color: get-color('neutral', 200);
     cursor: not-allowed;
 }
 

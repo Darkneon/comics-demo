@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './FavoritesBar.css'
+import './FavoritesBar.scss'
 import {Link} from "react-router-dom";
 
 function FavoritesBar({linkTo}) {

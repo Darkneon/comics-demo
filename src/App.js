@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {withConnectHome} from "./pages/PageHome";
 
 import {Route, Router} from "react-router-dom"

@@ -1,0 +1,41 @@
+@import "clean/colors";
+@import "clean/typography";
+
+@function get-color($color, $value: 0) {
+  @return map-get(map-get($colors, $color), $value);
+}
+
+.t-title {
+  font-size: $title-font-size;
+  color: get-color('primary', 700);
+  font-weight: 200;
+}
+
+.t-tag, .t-label {
+  color: get-color('primary', 500);
+}
+
+.t-tag {
+  padding-bottom: 3px;
+  font-size: $tag-font-size;
+}
+
+.t-label {
+  font-size: $label-font-size;
+  margin-bottom: 5px;
+}
+
+.t-label-text {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.t-long-text {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.t-select-text {
+  color: get-color('primary', 600);
+}

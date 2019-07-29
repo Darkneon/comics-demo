@@ -1,3 +1,5 @@
+@import "../../../themes/default";
+
 .favorite-bar {
     margin: 5px 0;
     display: flex;
@@ -12,5 +14,5 @@
     border-radius: 3px;
     background-color: transparent;
     border: 1px solid #dfdfdf;
-    color: #7d8caf;
+    color: get-color('primary', 600);
 }

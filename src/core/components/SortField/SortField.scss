@@ -1,3 +1,5 @@
+@import "../../../themes/default";
+
 .dd-wrapper:first-child {
     padding-right: 5px;
 }
@@ -8,7 +10,7 @@
 
 .dd-wrapper .dd-list-item:hover {
     color: #fff;
-    background-color: #ceddf9;
+    background-color: get-color('primary', 100);
 }
 
 .sort-field {

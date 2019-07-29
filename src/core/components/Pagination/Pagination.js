@@ -1,6 +1,6 @@
 import React from "react";
 import ReactJsPagination from "react-js-pagination";
-import './Pagination.css';
+import './Pagination.scss';
 
 function Pagination({activePage=0, totalItemCount=0, itemsCountPerPage=7, onChange=()=>{}}) {
    return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Modal.css';
+import './Modal.scss';
 
 export const Modal = ({ handleClose, children }) => {
     // Escape hatch to store the reference in the DOM.
