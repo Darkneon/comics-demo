@@ -53,8 +53,7 @@ export const changeInListIndex = (inListIndex) => {
 };
 
 
-
-export function loadComicsFrom(offset=0) {
+export function loadComicsFrom(offset = 0) {
     let sortString = sortBy([{name: 'title', direction: ASC}]);
     let orderBy = '';
     if (sortString) {
@@ -63,13 +62,13 @@ export function loadComicsFrom(offset=0) {
 
     orderBy += `&offset=${offset}`;
 
-    return async function(dispatch, getState) {
+    return async function (dispatch, getState) {
 
         const limit = `&limit=${getState().reducerComics.comicsPerPage}`;
 
         try {
             let response = await instance.get(API.comics + orderBy + limit, {
-                cache: { maxAge: 5 * 60 * 1000, exclude: {  query: false } },
+                cache: {maxAge: 5 * 60 * 1000, exclude: {query: false}},
                 transformResponse: transform
             });
 
@@ -99,7 +98,7 @@ export const loadComicsError = (number, message) => {
 };
 
 export const loadComic = (id) => {
-    return async function(dispatch) {
+    return async function (dispatch) {
         let response = await service.loadComic(id);
         return dispatch({
             type: LOAD_ACTIVE_COMIC_SUCCESS,
@@ -109,10 +108,10 @@ export const loadComic = (id) => {
 };
 
 export const loadComics = () => {
-    return async function(dispatch, getState) {
+    return async function (dispatch, getState) {
         const sort = {
             name: getState().reducerComics.selectedOption,
-                direction: getState().reducerComics.selectedSort,
+            direction: getState().reducerComics.selectedSort,
         };
 
         const limit = getState().reducerComics.comicsPerPage;

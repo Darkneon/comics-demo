@@ -34,7 +34,7 @@ export class PageHome extends React.Component {
     }
 
     componentWillMount() {
-        const { loadData, isLoaded } = this.props;
+        const {loadData, isLoaded} = this.props;
 
         if (!isLoaded) {
             loadData();
@@ -46,12 +46,12 @@ export class PageHome extends React.Component {
             return;
         }
 
-        const { loadData, changeSorting } = this.props;
+        const {loadData, changeSorting} = this.props;
         changeSorting(field.id, order.id);
         loadData({name: field.id, direction: order.id});
     }
 
-    onPageChange(page=0) {
+    onPageChange(page = 0) {
         const {loadComicsFrom, changeActivePage, comicsPerPage} = this.props;
         const offset = Math.max(0, page - 1) * comicsPerPage;
         changeActivePage(page);
@@ -59,7 +59,7 @@ export class PageHome extends React.Component {
     }
 
     render() {
-        const { comics, isLoaded, favorites={}, activePage, totalComics, toggleFavorite ,comicsPerPage, selectedOption, selectedSort} = this.props;
+        const {comics, isLoaded, favorites = {}, activePage, totalComics, toggleFavorite, comicsPerPage, selectedOption, selectedSort} = this.props;
 
         if (!isLoaded) {
             return (<Loading />);
@@ -71,7 +71,7 @@ export class PageHome extends React.Component {
                     optionsList={sortOptions}
                     selectedOption={selectedOption}
                     selectedSort={selectedSort}
-                    onChange={ this.reload.bind(this) }
+                    onChange={this.reload.bind(this)}
                 />
                 <ListComics
                     comics={comics}
@@ -90,9 +90,8 @@ export class PageHome extends React.Component {
 }
 
 
-
 const mapStateToProps = state => ({
-        activePage: state.reducerComics.activePage,
+    activePage: state.reducerComics.activePage,
     comics: state.reducerComics.comics,
     isLoaded: state.reducerComics.loaded,
     favorites: state.reducerFavorites.favorites,
@@ -111,7 +110,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     changeActivePage: changeActivePage
 }, dispatch);
 
-export const withConnectHome = (props=mapStateToProps, actions=mapDispatchToProps) => {
+export const withConnectHome = (props = mapStateToProps, actions = mapDispatchToProps) => {
     return withRouter(connect(props, actions)(PageHome));
 };
 
