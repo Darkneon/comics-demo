@@ -11,12 +11,12 @@ describe('<ComicShort comic={} />', () => {
             title: 'a title',
             price: 29,
             published: '-',
-            cover: '/url'
+            cover: '/url',
         };
 
         const { getByTestId } = render(
             <MemoryRouter>
-                <ComicShort comic={comic}/>
+                <ComicShort comic={comic} linkTo='#' />
             </MemoryRouter>
         );
 

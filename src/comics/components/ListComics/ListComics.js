@@ -1,35 +1,40 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 import List from "../../../core/components/List/List";
 import ComicShort from "../ComicShort/ComicShort";
+import * as _ from 'lodash';
 
-function isFavorite(comic={}, favorites={}) {
+function isFavorite(comic = {}, favorites = {}) {
     return !!favorites[comic.key];
 }
 
-function comicRenderer(props) {
+function comicRenderer(favorites, toggleFavorite) {
     return (item) => {
         return (
-                <ComicShort comic={item}
-                            toggleFavorite={props.toggleFavorite}
-                            linkTo={`/comic/${item.id}`}
-                            isFavorited={isFavorite(item, props.favorites)} />
-
+            <ComicShort comic={item}
+                        linkTo={`/comic/${item.id}`}
+                        isFavorited={isFavorite(item, favorites)}
+                        toggleFavorite={toggleFavorite}
+            />
         )
     }
 
 }
 
-const ListComics = ({comics, ...props}) => {
+const ListComics = ({comics, favorites = {}, toggleFavorite = _.noop}) => {
     return (
-        <List items={comics} customRenderer={comicRenderer(props)} data-testid={'list-comics'} />
+        <List items={comics}
+              customRenderer={comicRenderer(favorites, toggleFavorite)}
+              data-testid={'list-comics'}
+        />
     );
 };
 
 ListComics.propTypes = {
     comics: PropTypes.array.isRequired,
-    favorites: PropTypes.object.isRequired,
+    favorites: PropTypes.object,
+    toggleFavorite: PropTypes.func
+
 };
 
 export default ListComics;

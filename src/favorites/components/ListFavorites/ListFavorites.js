@@ -17,7 +17,7 @@ const heart = {
     verticalAlign: 'baseline'
 };
 
-const ListFavorites = ({comics, toggleFavorite}) => {
+const ListFavorites = ({comics, toggleFavorite=_.noop}) => {
     const favoriteRenderer = (item) => (
         <ComicShort linkTo={`/comic/${item.key}`} comic={item} isFavorited={true} toggleFavorite={toggleFavorite}/>
     );
@@ -31,7 +31,8 @@ const ListFavorites = ({comics, toggleFavorite}) => {
 };
 
 ListFavorites.propTypes = {
-    comics: PropTypes.object.isRequired,
+    comics: PropTypes.array.isRequired,
+    toggleFavorite: PropTypes.func,
 };
 
 export default ListFavorites;
