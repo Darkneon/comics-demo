@@ -3,7 +3,6 @@ import 'jest';
 
 
 
-
 describe('sortBy', () => {
     it('return empty string then there are no fields or is null', () => {
         expect(sortBy([])).toBe('');

@@ -2,11 +2,11 @@ import React from "react";
 
 
 import PropTypes from "prop-types";
-import Star from "../../../core/components/Star/Star";
-
-import './ComicShort.css';
 import {Link} from "react-router-dom";
-import publishedDate from "../../publishedDate/publishedDate";
+
+import Star from "core/components/Star/Star";
+import publishedDate from "comics/publishedDate/publishedDate";
+import "./ComicShort.css";
 
 const ComicShort = ({comic, linkTo, isFavorited, toggleFavorite}) => {
     const {title, price, published, cover='https://via.placeholder.com/150'} = comic;

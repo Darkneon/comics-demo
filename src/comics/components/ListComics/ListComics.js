@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import List from "../../../core/components/List/List";
-import ComicShort from "../ComicShort/ComicShort";
-import * as _ from 'lodash';
+import * as _ from "lodash";
+
+import List from "core/components/List/List";
+import ComicShort from "comics/components/ComicShort/ComicShort";
 
 function isFavorite(comic = {}, favorites = {}) {
     return !!favorites[comic.key];

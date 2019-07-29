@@ -1,18 +1,19 @@
 import React from "react";
 import 'jest';
-
-import {cleanup, render, waitForElement} from '@testing-library/react';
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {ComicsHttpClientFake} from "./fakes/comicsHttpClient";
-import {withConnectHome} from "../pages/PageHome";
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
-import {ComicsService} from "../comics/service";
-import {reducerComics} from "../comics/reducers";
+import {cleanup, render, waitForElement} from '@testing-library/react';
 import {MemoryRouter} from 'react-router-dom';
-import {reducerFavorites} from "../favorites/reducers";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {setFakeService} from "../comics/actions";
+
+import {ComicsHttpClientFake} from "tests/fakes/comicsHttpClient";
+import {withConnectHome} from "pages/PageHome";
+import {ComicsService} from "comics/service";
+import {reducerComics} from "comics/reducers";
+import {reducerFavorites} from "favorites/reducers";
+
+import {setFakeService} from "comics/actions";
 
 const middleware = [thunk];
 

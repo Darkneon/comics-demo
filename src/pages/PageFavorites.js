@@ -1,9 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import ListFavorites from "../favorites/components/ListFavorites/ListFavorites";
 import {bindActionCreators} from "redux";
-import {toggleFavorite} from "../favorites/actions";
-import {withModal} from "../core/components/Modal/Modal";
+import ListFavorites from "favorites/components/ListFavorites/ListFavorites";
+import {toggleFavorite} from "favorites/actions";
+import {withModal} from "core/components/Modal/Modal";
 
 export class PageFavorites extends React.Component {
     render() {

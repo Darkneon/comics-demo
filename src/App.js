@@ -1,16 +1,17 @@
-import React from 'react';
-import './App.scss';
-import {withConnectHome} from "./pages/PageHome";
-
-import {Route, Router} from "react-router-dom"
-import {withModalComicDetails} from "./pages/PageComicDetails";
-import {withModalFavorites} from "./pages/PageFavorites";
+import React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {closeModal, loadComic, openModal} from "./comics/actions";
+import {Route, Router} from "react-router-dom"
 
-import history from './history'
-import FavoritesBar from "./favorites/components/FavoritesBar/FavoritesBar";
+import "./App.scss";
+
+import {withConnectHome} from "pages/PageHome";
+import {withModalComicDetails} from "pages/PageComicDetails";
+import {withModalFavorites} from "pages/PageFavorites";
+import {closeModal, loadComic, openModal} from "comics/actions";
+
+import FavoritesBar from "favorites/components/FavoritesBar/FavoritesBar";
+import history from "appHistory";
 
 function App(props) {
   return (

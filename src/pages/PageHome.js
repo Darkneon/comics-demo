@@ -1,14 +1,16 @@
 import React from "react";
-import ListComics from "../comics/components/ListComics/ListComics";
+
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {toggleFavorite} from "../favorites/actions";
-import SortField from "../core/components/SortField/SortField";
-import * as _ from 'lodash';
+import * as _ from "lodash";
 import {withRouter} from "react-router-dom";
-import Pagination from "../core/components/Pagination/Pagination";
-import {changeActivePage, changeSorting, loadComics, loadComicsFrom} from "../comics/actions";
-import Loading from "../core/components/Loading/Loading";
+
+import {toggleFavorite} from "favorites/actions";
+import SortField from "core/components/SortField/SortField";
+import ListComics from "comics/components/ListComics/ListComics";
+import Pagination from "core/components/Pagination/Pagination";
+import {changeActivePage, changeSorting, loadComics, loadComicsFrom} from "comics/actions";
+import Loading from "core/components/Loading/Loading";
 
 const sortOptions = [
     {
@@ -65,18 +67,23 @@ export class PageHome extends React.Component {
 
         return (
             <div>
-                <SortField optionsList={sortOptions}
-                           selectedOption={selectedOption}
-                           selectedSort={selectedSort}
-                           onChange={ this.reload.bind(this) }  />
-                <ListComics comics={comics}
-                            favorites={favorites}
-                            toggleFavorite={toggleFavorite}
+                <SortField
+                    optionsList={sortOptions}
+                    selectedOption={selectedOption}
+                    selectedSort={selectedSort}
+                    onChange={ this.reload.bind(this) }
                 />
-                <Pagination onChange={this.onPageChange}
-                            activePage={activePage}
-                            totalItemCount={totalComics}
-                            itemsCountPerPage={comicsPerPage} />
+                <ListComics
+                    comics={comics}
+                    favorites={favorites}
+                    toggleFavorite={toggleFavorite}
+                />
+                <Pagination
+                    activePage={activePage}
+                    totalItemCount={totalComics}
+                    itemsCountPerPage={comicsPerPage}
+                    onChange={this.onPageChange}
+                />
             </div>
         );
     }

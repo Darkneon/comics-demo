@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import * as _ from 'lodash';
-
-
 import {Dropdown} from 'reactjs-dropdown-component'
 
 import './SortField.scss';

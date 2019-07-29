@@ -1,8 +1,8 @@
-import axios from 'axios';
-import * as _ from 'lodash';
+import axios from "axios";
+import * as _ from "lodash";
 import {sortBy} from "./sorter/sorter";
-import {setupCache} from 'axios-cache-adapter'
-import {endPoint} from "../api";
+import {setupCache} from "axios-cache-adapter";
+import {endPoint} from "api";
 
 const cache = setupCache({
     maxAge: 5 * 60 * 1000

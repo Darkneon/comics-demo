@@ -1,11 +1,12 @@
 import React from "react";
-import {withModal} from "../core/components/Modal/Modal";
-import {toggleFavorite} from "../favorites/actions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import ComicLong from "../comics/components/ComicLong/ComicLong";
-import history from "../history";
-import {changeInListIndex, loadComic} from "../comics/actions";
+
+import {withModal} from "core/components/Modal/Modal";
+import {toggleFavorite} from "favorites/actions";
+import ComicLong from "comics/components/ComicLong/ComicLong";
+import history from "appHistory";
+import {changeInListIndex, loadComic} from "comics/actions";
 
 export class PageComicDetails extends React.Component {
     componentWillMount() {

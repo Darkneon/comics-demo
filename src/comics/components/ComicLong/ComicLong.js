@@ -1,12 +1,12 @@
 import React from "react";
 
 import PropTypes from "prop-types";
-import Star from "../../../core/components/Star/Star";
-import * as _ from 'lodash';
-import './ComicLong.css';
-import sanitizeHtml from 'sanitize-html';
-import PrevNext from "../../../core/components/PrevNext/PrevNext";
-import publishedDate from "../../publishedDate/publishedDate";
+import * as _ from "lodash";
+import sanitizeHtml from "sanitize-html";
+import Star from "core/components/Star/Star";
+import PrevNext from "core/components/PrevNext/PrevNext";
+import publishedDate from "comics/publishedDate/publishedDate";
+import "./ComicLong.css";
 
 const ComicLong = ({comic, isFavorited, toggleFavorite, onPrevClick, onNextClick}) => {
     const {title, price, published, cover='https://via.placeholder.com/150', description, creators} = comic;
@@ -23,7 +23,6 @@ const ComicLong = ({comic, isFavorited, toggleFavorite, onPrevClick, onNextClick
                         <Star onClick={handleClick} checked={isFavorited} className='u-hoverable'/>
                     </div>
 
-
                     <div className='t-title' data-testid='title'>{title}</div>
                     <br />
                     <div className='t-label'>Price</div>
@@ -32,8 +31,6 @@ const ComicLong = ({comic, isFavorited, toggleFavorite, onPrevClick, onNextClick
                     <div className='t-label-text' data-testid='published'>{publishedDate(published, '-')}</div>
                     <div className='t-label'>Description:</div>
                     <div className='t-long-text' data-testid='description' dangerouslySetInnerHTML={{__html: sanitizeHtml(description)}} />
-
-
 
                     <div className='comic-long-creators-container'>
                         { renderCreators(creators) }
