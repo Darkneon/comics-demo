@@ -1,18 +1,8 @@
 import React, {useState} from "react";
-import * as _ from 'lodash';
-import {Dropdown} from 'reactjs-dropdown-component'
-
-import './SortField.scss';
-
-const ordersList = [{
-    id: 0,
-    key: 'order',
-    title: 'Asc',
-}, {
-    id: 1,
-    key: 'order',
-    title: 'Desc'
-},];
+import * as _ from "lodash";
+import {Dropdown} from "reactjs-dropdown-component"
+import ordersList from "./ordersList";
+import "./SortField.scss";
 
 const SortField = ({selectedOption, selectedSort, onChange, optionsList = {}}) => {
     const [options, setOptions] = useState(optionsList);
@@ -21,31 +11,21 @@ const SortField = ({selectedOption, selectedSort, onChange, optionsList = {}}) =
     const [orderSelected, setOrderSelected] = useState({});
 
     if (_.isEmpty(optionSelected)) {
-        const option = optionsList.find(x => x.id === selectedOption);
-        const result = resetThenSet(option.id, option.key, optionsList);
-        setOptionSelected(result.selected);
-        setOptions(result.remaining);
+        populateDefaultOptions(options, selectedOption, setOptions, setOptionSelected);
     }
 
     if (_.isEmpty(orderSelected)) {
-        const order = ordersList.find(x => x.id === selectedSort);
-        const result = resetThenSet(order.id, order.key, ordersList);
-        setOrderSelected(result.selected);
-        setOrders(result.remaining);
+        populateDefaultOrder(ordersList, selectedSort, setOrders, setOrderSelected)
     }
 
     const handleFieldChange = (id, key) => {
-        const result = resetThenSet(id, key, optionsList);
-        setOptionSelected(result.selected);
-        setOptions(result.remaining);
-        onChange(id, key, result.selected, orderSelected);
+        const updated = updateDropdown(id, key, optionsList, setOptions, setOptionSelected);
+        onChange(id, key, updated.selected, orderSelected);
     };
 
     const handleOrderChange = (id, key) => {
-        const result = resetThenSet(id, key, ordersList);
-        setOrderSelected(result.selected);
-        setOrders(result.remaining);
-        onChange(id, key, optionSelected, result.selected);
+        const updated = updateDropdown(id, key, ordersList, setOrders, setOrderSelected);
+        onChange(id, key, optionSelected, updated.selected);
     };
 
     return (
@@ -64,6 +44,23 @@ const SortField = ({selectedOption, selectedSort, onChange, optionsList = {}}) =
         </div>
     );
 };
+
+function populateDefaultOptions(optionsList, selectedOption, setOptions, setOptionSelected, ) {
+    const option = optionsList.find(x => x.id === selectedOption);
+    updateDropdown(option.id, option.key, optionsList, setOptions, setOptionSelected);
+}
+
+function populateDefaultOrder(ordersList, selectedOrder, setOrders, setOrderSelected) {
+    const order = ordersList.find(x => x.id === selectedOrder);
+    updateDropdown(order.id, order.key, ordersList, setOrders, setOrderSelected);
+}
+
+function updateDropdown(id, key, list, setList, setSelected, ) {
+    const update = resetThenSet(id, key, list);
+    setSelected(update.selected);
+    setList(update.remaining);
+    return update;
+}
 
 function resetThenSet(id, key, items) {
     return {
