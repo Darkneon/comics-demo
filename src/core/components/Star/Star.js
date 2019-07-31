@@ -1,28 +1,17 @@
 import React from "react";
 
 import PropTypes from "prop-types";
+import Icon from "../Icon/Icon";
 
-const fontSize = '36px';
-const fontWeight = 100;
-
-const StarGlyth = ({onClick, color='#9E9E9E', className, children}) => (
-    <div onClick={onClick} style={{fontSize, color, fontWeight}} className={className}>
-        {children}
-    </div>
-);
-
-const StarGlythChecked = (props) => (<StarGlyth color='gold' {...props}>&#9733;</StarGlyth>);
-const StarGlythNormal = (props) => (<StarGlyth {...props}>&#9734;</StarGlyth>);
+const size = '36px';
 
 const Star = ({onClick, checked=false, ...props}) => {
     if (checked) {
-        return (
-            <StarGlythChecked onClick={onClick} {...props} />
-        );
+        return (<Icon type='star-filled' color='gold' size={size} onClick={onClick} {...props} />);
     }
 
     return (
-        <StarGlythNormal onClick={onClick} {...props}  />
+        <Icon type='star-empty' color='#adadad' size={size} onClick={onClick} {...props} />
     );
 };
 

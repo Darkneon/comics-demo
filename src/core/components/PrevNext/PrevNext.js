@@ -1,21 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
 import './PrevNext.css';
-
-const Arrow = ({onClick, children}) => (
-    <div onClick={onClick} className='arrow u-hoverable'>
-        {children}
-    </div>
-);
-
-const ArrowLeft = ({onClick}) => (<Arrow onClick={onClick}>&#8678;</Arrow>);
-const ArrowRight = ({onClick}) => (<Arrow onClick={onClick}>&#8680;</Arrow>);
+import Icon from "../Icon/Icon";
 
 const PrevNext = ({onPrevClick, onNextClick}) => {
     return (
         <div className='prev-next-container'>
-            <ArrowLeft onClick={onPrevClick} />
-            <ArrowRight onClick={onNextClick} />
+            <Icon type='arrow-left' onClick={onPrevClick} className='arrow u-hoverable'/>
+            <Icon type='arrow-right' onClick={onNextClick} className='arrow u-hoverable' />
         </div>
     )
 };
