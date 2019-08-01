@@ -1,8 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-
-import {withModal} from "core/components/Modal/Modal";
 import {toggleFavorite} from "favorites/actions";
 import ComicLong from "comics/components/ComicLong/ComicLong";
 import history from "appHistory";
@@ -86,4 +84,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 
 
-export const withModalComicDetails = connect(mapStateToProps, mapDispatchToProps)(withModal(PageComicDetails));
+export const withConnectPageComicDetails = (component) => {
+    return connect(mapStateToProps, mapDispatchToProps)(component(PageComicDetails));
+};

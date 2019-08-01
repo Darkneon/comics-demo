@@ -110,7 +110,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     changeActivePage: changeActivePage
 }, dispatch);
 
-export const withConnectHome = (props = mapStateToProps, actions = mapDispatchToProps) => {
-    return withRouter(connect(props, actions)(PageHome));
+export const withConnectHome = () => {
+    return withRouter(connect(mapStateToProps, mapDispatchToProps)(PageHome));
 };
-

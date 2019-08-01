@@ -6,12 +6,13 @@ import {Route, Router} from "react-router-dom"
 import "./App.scss";
 
 import {withConnectHome} from "pages/PageHome";
-import {withModalComicDetails} from "pages/PageComicDetails";
-import {withModalFavorites} from "pages/PageFavorites";
 import {closeModal, loadComic, openModal} from "comics/actions";
 
 import FavoritesBar from "favorites/components/FavoritesBar/FavoritesBar";
 import history from "appHistory";
+import {withModal} from "./core/components/Modal/Modal";
+import {withConnectPageFavorites} from "./pages/PageFavorites";
+import {withConnectPageComicDetails} from "./pages/PageComicDetails";
 
 function App(props) {
   return (
@@ -28,19 +29,19 @@ function App(props) {
 
 function RoutedHome(props) {
     return ({match, location}) => {
-        const Home1 = withConnectHome();
+        const Home = withConnectHome();
 
         if (location.pathname === '/') {
             props.closeModal();
         }
 
-        return (<Home1 />)
+        return (<Home />)
     }
 }
 
 const RoutedFavorites = (props) => {
     return ({match, location}) => {
-        const ModalFavoritesPage = withModalFavorites;
+        const ModalFavoritesPage = withConnectPageFavorites(withModal);
         const { modal } = props;
 
         const closeModal = () => {
@@ -61,7 +62,7 @@ const RoutedFavorites = (props) => {
 
 const RoutedComicDetails = (props) => {
     return ({match, location}) => {
-        const ModalComicDetailsPage = withModalComicDetails;
+        const ModalComicDetailsPage = withConnectPageComicDetails(withModal);
         const { modal } = props;
 
         const closeModal = () => {
