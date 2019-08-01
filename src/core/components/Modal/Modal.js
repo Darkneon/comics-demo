@@ -2,26 +2,25 @@ import React from 'react';
 import './Modal.scss';
 import Icon from "../Icon/Icon";
 
+const ModalBackground = ({onClick}) => (
+    <div className='modal-background' onClick={onClick}></div>
+);
+
+const ModalContent = ({children}) => (
+    <div className='modal-content'>{children}</div>
+);
+
 export const Modal = ({ handleClose, children }) => {
-    // Escape hatch to store the reference in the DOM.
-    // To be used in the onClick listener to call handleClose if have not click on a child component
-    let domSelfRef;
-
-    const handleCloseIfOutside = (e) => {
-        if (e.target === domSelfRef) {
-            handleClose();
-        }
-    };
-
     return (
-        <div className="modal" onClick={handleCloseIfOutside} ref={node => domSelfRef = node}>
-            <button onClick={handleClose} className='modal-close-button'>
-                <Icon type='close' />
-            </button>
-            <div className="modal-content">
-                {children}
+        <>
+            <div className="modal">
+                <button className='modal-close-button' onClick={handleClose}>
+                    <Icon type='close' />
+                </button>
+                <ModalContent>{children}</ModalContent>
+                <ModalBackground onClick={handleClose}/>
             </div>
-        </div>
+        </>
     );
 };
 
