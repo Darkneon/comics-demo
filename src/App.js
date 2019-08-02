@@ -13,6 +13,9 @@ import history from "appHistory";
 import {withModal} from "./core/components/Modal/Modal";
 import {withConnectPageFavorites} from "./pages/PageFavorites";
 import {withConnectPageComicDetails} from "./pages/PageComicDetails";
+import {withPortal} from "./core/components/Portal/Portal";
+
+const rootModalId = 'rootModal';
 
 function App(props) {
   return (
@@ -41,7 +44,6 @@ function RoutedHome(props) {
 
 const RoutedFavorites = (props) => {
     return ({match, location}) => {
-        const ModalFavoritesPage = withConnectPageFavorites(withModal);
         const { modal } = props;
 
         const closeModal = () => {
@@ -54,7 +56,12 @@ const RoutedFavorites = (props) => {
 
 
         return (
-            <ModalFavoritesPage comicId={match.params.id} isOpen={modal} onClose={closeModal}/>
+            <ModalFavoritesPage
+                comicId={match.params.id}
+                portalRootId={rootModalId}
+                isOpen={modal}
+                onClose={closeModal}
+            />
         )
     };
 };
@@ -62,7 +69,6 @@ const RoutedFavorites = (props) => {
 
 const RoutedComicDetails = (props) => {
     return ({match, location}) => {
-        const ModalComicDetailsPage = withConnectPageComicDetails(withModal);
         const { modal } = props;
 
         const closeModal = () => {
@@ -75,11 +81,19 @@ const RoutedComicDetails = (props) => {
 
 
         return (
-            <ModalComicDetailsPage comicId={match.params.id} isOpen={modal} onClose={closeModal}/>
+            <ModalComicDetailsPage
+                comicId={match.params.id}
+                portalRootId={rootModalId}
+                isOpen={modal}
+                onClose={closeModal}
+            />
         )
     };
 
 };
+
+const ModalFavoritesPage = withConnectPageFavorites((page) => withPortal(withModal(page)));
+const ModalComicDetailsPage = withConnectPageComicDetails((page) => withPortal(withModal(page)));
 
 const mapStateToProps = state => ({
     comics: state.reducerComics.comics,

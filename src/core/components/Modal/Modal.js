@@ -24,9 +24,7 @@ export const Modal = ({ handleClose, children }) => {
     );
 };
 
-export const withModal = (WrappedComponent) => (props) => {
-    const {isOpen, onClose} = props;
-
+export const withModal = (WrappedComponent) => ({isOpen, onClose, ...props}) => {
     if (!isOpen) {
         return null;
     }

@@ -31,7 +31,7 @@ const ListFavorites = ({comics, toggleFavorite=_.noop}) => {
 };
 
 ListFavorites.propTypes = {
-    comics: PropTypes.array.isRequired,
+    comics: PropTypes.object.isRequired,
     toggleFavorite: PropTypes.func,
 };
 
