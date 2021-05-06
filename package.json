@@ -18,7 +18,7 @@
     "reactjs-dropdown-component": "^1.0.6",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "sanitize-html": "^1.20.1"
+    "sanitize-html": "^2.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
